@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ML8511_Ultraviolet_Light_Sensor", "ML8511 Ultraviolet Light Sensor\ML8511_Ultraviolet_Light_Sensor.csproj", "{0170F8E2-E4DA-4D6C-9F14-83E8C7A8C9F1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|ARM = Release|ARM
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0170F8E2-E4DA-4D6C-9F14-83E8C7A8C9F1}.Debug|ARM.ActiveCfg = Debug|ARM
+		{0170F8E2-E4DA-4D6C-9F14-83E8C7A8C9F1}.Debug|ARM.Build.0 = Debug|ARM
+		{0170F8E2-E4DA-4D6C-9F14-83E8C7A8C9F1}.Debug|ARM.Deploy.0 = Debug|ARM
+		{0170F8E2-E4DA-4D6C-9F14-83E8C7A8C9F1}.Debug|x64.ActiveCfg = Debug|x64
+		{0170F8E2-E4DA-4D6C-9F14-83E8C7A8C9F1}.Debug|x64.Build.0 = Debug|x64
+		{0170F8E2-E4DA-4D6C-9F14-83E8C7A8C9F1}.Debug|x64.Deploy.0 = Debug|x64
+		{0170F8E2-E4DA-4D6C-9F14-83E8C7A8C9F1}.Debug|x86.ActiveCfg = Debug|x86
+		{0170F8E2-E4DA-4D6C-9F14-83E8C7A8C9F1}.Debug|x86.Build.0 = Debug|x86
+		{0170F8E2-E4DA-4D6C-9F14-83E8C7A8C9F1}.Debug|x86.Deploy.0 = Debug|x86
+		{0170F8E2-E4DA-4D6C-9F14-83E8C7A8C9F1}.Release|ARM.ActiveCfg = Release|ARM
+		{0170F8E2-E4DA-4D6C-9F14-83E8C7A8C9F1}.Release|ARM.Build.0 = Release|ARM
+		{0170F8E2-E4DA-4D6C-9F14-83E8C7A8C9F1}.Release|ARM.Deploy.0 = Release|ARM
+		{0170F8E2-E4DA-4D6C-9F14-83E8C7A8C9F1}.Release|x64.ActiveCfg = Release|x64
+		{0170F8E2-E4DA-4D6C-9F14-83E8C7A8C9F1}.Release|x64.Build.0 = Release|x64
+		{0170F8E2-E4DA-4D6C-9F14-83E8C7A8C9F1}.Release|x64.Deploy.0 = Release|x64
+		{0170F8E2-E4DA-4D6C-9F14-83E8C7A8C9F1}.Release|x86.ActiveCfg = Release|x86
+		{0170F8E2-E4DA-4D6C-9F14-83E8C7A8C9F1}.Release|x86.Build.0 = Release|x86
+		{0170F8E2-E4DA-4D6C-9F14-83E8C7A8C9F1}.Release|x86.Deploy.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0C51E8A2-92E1-43BC-8CF3-88F59D48C950}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://zingpow.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ML8511\u0020Ultraviolet\u0020Light\u0020Sensor\\ML8511_Ultraviolet_Light_Sensor.csproj
+		SccProjectName1 = ML8511\u0020Ultraviolet\u0020Light\u0020Sensor
+		SccLocalPath1 = ML8511\u0020Ultraviolet\u0020Light\u0020Sensor
+	EndGlobalSection
+EndGlobal

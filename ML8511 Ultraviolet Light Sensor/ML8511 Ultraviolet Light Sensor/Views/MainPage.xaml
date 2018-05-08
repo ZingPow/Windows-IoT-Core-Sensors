@@ -1,0 +1,88 @@
+﻿<Page
+    x:Class="ML8511_Ultraviolet_Light_Sensor.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:Microsoft.Toolkit.Uwp.UI.Converters"
+    Style="{StaticResource PageStyle}"
+    DataContext="{Binding MainViewModel, Source={StaticResource Locator}}"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <converters:StringFormatConverter x:Key="StringFormatConverter"/>
+    </Page.Resources>
+    <Grid
+        x:Name="ContentArea"
+        Margin="{StaticResource MediumLeftRightMargin}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="TitleRow" Height="48"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            x:Name="TitlePage"
+            x:Uid="Main_Title"
+            Style="{StaticResource PageTitleStyle}" />
+
+        <Grid 
+            Grid.Row="1" Margin="8"
+            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
+                Place your content here.-->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Orientation="Vertical" Margin="10">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="ML8511 on a Timer" FontSize="20" Margin="0,0,10,0"/>
+                    <Button Content="{x:Bind Path=ViewModel.ButtonText, Mode=OneWay}" Command="{x:Bind ViewModel.ToggleTimer}" FontSize="20"/>
+                </StackPanel>
+                <TextBlock Text="Given Equation" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{x:Bind Converter={StaticResource StringFormatConverter}, ConverterParameter=\{0:0.####\}, Mode=OneWay, Path=ViewModel.Voltage1}" Margin="8,0,8,0"/>
+                    <TextBlock Text="volts"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="UV Intensity"/>
+                    <TextBlock Text="{x:Bind Converter={StaticResource StringFormatConverter}, ConverterParameter=\{0:0.##\}, Mode=OneWay, Path=ViewModel.UVIntensity1a}" Margin="8,0,8,0"/>
+                    <TextBlock Text="mW/cm2     UVIndex"/>
+                    <TextBlock Text="{x:Bind Converter={StaticResource StringFormatConverter}, ConverterParameter=\{0:0.##\}, Mode=OneWay, Path=ViewModel.UVIndex1a}" Margin="8,0,0,0" />
+                </StackPanel>
+                <TextBlock Text="Map Float" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="UV Intensity"/>
+                    <TextBlock Text="{x:Bind Converter={StaticResource StringFormatConverter}, ConverterParameter=\{0:0.##\}, Mode=OneWay, Path=ViewModel.UVIntensity1b}" Margin="8,0,8,0"/>
+                    <TextBlock Text="mW/cm2     UVIndex"/>
+                    <TextBlock Text="{x:Bind Converter={StaticResource StringFormatConverter}, ConverterParameter=\{0:0.##\}, Mode=OneWay, Path=ViewModel.UVIndex1b}" Margin="8,0,0,0" />
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Orientation="Vertical" Margin="10">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="ML8511 on Demand"  FontSize="20" Margin="0,0,10,0"/>
+                    <Button Content="Get UV Reading" Command="{x:Bind ViewModel.GetUVIReading}" FontSize="18"/>
+                </StackPanel>
+                <TextBlock Text="Given Equation" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{x:Bind Converter={StaticResource StringFormatConverter}, ConverterParameter=\{0:0.####\}, Mode=OneWay, Path=ViewModel.Voltage2}" Margin="8,0,8,0"/>
+                    <TextBlock Text="volts"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="UV Intensity"/>
+                    <TextBlock Text="{x:Bind Converter={StaticResource StringFormatConverter}, ConverterParameter=\{0:0.##\}, Mode=OneWay, Path=ViewModel.UVIntensity2a}" Margin="8,0,8,0"/>
+                    <TextBlock Text="mW/cm2     UVIndex"/>
+                    <TextBlock Text="{x:Bind Converter={StaticResource StringFormatConverter}, ConverterParameter=\{0:0.##\}, Mode=OneWay, Path=ViewModel.UVIndex2a}" Margin="8,0,0,0" />
+                </StackPanel>
+                <TextBlock Text="Map Float" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="UV Intensity"/>
+                    <TextBlock Text="{x:Bind Converter={StaticResource StringFormatConverter}, ConverterParameter=\{0:0.##\}, Mode=OneWay, Path=ViewModel.UVIntensity2b}" Margin="8,0,8,0"/>
+                    <TextBlock Text="mW/cm2     UVIndex"/>
+                    <TextBlock Text="{x:Bind Converter={StaticResource StringFormatConverter}, ConverterParameter=\{0:0.##\}, Mode=OneWay, Path=ViewModel.UVIndex2b}" Margin="8,0,0,0" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>
