@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "US_100_Ultrasonic_Distance_Sensor", "US-100 Ultrasonic Distance Sensor\US_100_Ultrasonic_Distance_Sensor.csproj", "{08CAE0DD-0A26-4C77-A1A8-A8D40881ECCC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|ARM = Release|ARM
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{08CAE0DD-0A26-4C77-A1A8-A8D40881ECCC}.Debug|ARM.ActiveCfg = Debug|ARM
+		{08CAE0DD-0A26-4C77-A1A8-A8D40881ECCC}.Debug|ARM.Build.0 = Debug|ARM
+		{08CAE0DD-0A26-4C77-A1A8-A8D40881ECCC}.Debug|ARM.Deploy.0 = Debug|ARM
+		{08CAE0DD-0A26-4C77-A1A8-A8D40881ECCC}.Debug|x64.ActiveCfg = Debug|x64
+		{08CAE0DD-0A26-4C77-A1A8-A8D40881ECCC}.Debug|x64.Build.0 = Debug|x64
+		{08CAE0DD-0A26-4C77-A1A8-A8D40881ECCC}.Debug|x64.Deploy.0 = Debug|x64
+		{08CAE0DD-0A26-4C77-A1A8-A8D40881ECCC}.Debug|x86.ActiveCfg = Debug|x86
+		{08CAE0DD-0A26-4C77-A1A8-A8D40881ECCC}.Debug|x86.Build.0 = Debug|x86
+		{08CAE0DD-0A26-4C77-A1A8-A8D40881ECCC}.Debug|x86.Deploy.0 = Debug|x86
+		{08CAE0DD-0A26-4C77-A1A8-A8D40881ECCC}.Release|ARM.ActiveCfg = Release|ARM
+		{08CAE0DD-0A26-4C77-A1A8-A8D40881ECCC}.Release|ARM.Build.0 = Release|ARM
+		{08CAE0DD-0A26-4C77-A1A8-A8D40881ECCC}.Release|ARM.Deploy.0 = Release|ARM
+		{08CAE0DD-0A26-4C77-A1A8-A8D40881ECCC}.Release|x64.ActiveCfg = Release|x64
+		{08CAE0DD-0A26-4C77-A1A8-A8D40881ECCC}.Release|x64.Build.0 = Release|x64
+		{08CAE0DD-0A26-4C77-A1A8-A8D40881ECCC}.Release|x64.Deploy.0 = Release|x64
+		{08CAE0DD-0A26-4C77-A1A8-A8D40881ECCC}.Release|x86.ActiveCfg = Release|x86
+		{08CAE0DD-0A26-4C77-A1A8-A8D40881ECCC}.Release|x86.Build.0 = Release|x86
+		{08CAE0DD-0A26-4C77-A1A8-A8D40881ECCC}.Release|x86.Deploy.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D174B885-B0EB-4CF1-9A4A-3F7587EFA9A5}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://zingpow.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = US-100\u0020Ultrasonic\u0020Distance\u0020Sensor\\US_100_Ultrasonic_Distance_Sensor.csproj
+		SccProjectName1 = US-100\u0020Ultrasonic\u0020Distance\u0020Sensor
+		SccLocalPath1 = US-100\u0020Ultrasonic\u0020Distance\u0020Sensor
+	EndGlobalSection
+EndGlobal
