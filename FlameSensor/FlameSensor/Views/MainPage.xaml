@@ -1,0 +1,123 @@
+﻿<Page
+    x:Class="FlameSensor.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="using:Microsoft.Toolkit.Uwp.UI.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:tc="using:Telerik.UI.Xaml.Controls.Chart"
+    Style="{StaticResource PageStyle}"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <converters:StringFormatConverter x:Key="StringFormatConverter" />
+        <converters:FormatStringConverter x:Key="FormatStringConverter" />
+    </Page.Resources>
+    <Grid x:Name="ContentArea" Margin="{StaticResource MediumLeftRightMargin}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            x:Uid="Main_Title"
+            Grid.Row="0"
+            Style="{StaticResource PageTitleStyle}" />
+        <Grid Grid.Row="1" Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+            <!--
+                The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content.
+                Place your content here.
+            -->
+
+            <Grid HorizontalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        FontSize="20"
+                        Text="{x:Bind ViewModel.ReadingTime, Mode=OneWay, Converter={StaticResource FormatStringConverter}, ConverterParameter='{}h:mm:ss tt'}" />
+                    <TextBlock
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        FontSize="20"
+                        Text="{x:Bind ViewModel.FlameStatus, Mode=OneWay}" />
+                    <StackPanel
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Orientation="Horizontal">
+                        <TextBlock FontSize="20" Text="{x:Bind ViewModel.FlameLevel, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter='{}{0:0.###}'}" />
+                        <TextBlock FontSize="20" Text=" volts" />
+                    </StackPanel>
+                </Grid>
+                <tc:RadCartesianChart
+                    x:Name="radChartDay"
+                    Grid.Row="1"
+                    Margin="0,4,0,2"
+                    FontFamily="Segoe UI"
+                    PaletteName="DefaultDarkSelected">
+                    <tc:RadCartesianChart.Grid>
+                        <tc:CartesianChartGrid MajorLinesVisibility="XY">
+                            <tc:CartesianChartGrid.MajorXLineStyle>
+                                <Style TargetType="Line">
+                                    <Setter Property="StrokeDashArray" Value="10, 2" />
+                                </Style>
+                            </tc:CartesianChartGrid.MajorXLineStyle>
+                        </tc:CartesianChartGrid>
+                    </tc:RadCartesianChart.Grid>
+                    <tc:RadCartesianChart.HorizontalAxis>
+                        <tc:DateTimeContinuousAxis
+                            Title="Time"
+                            LabelFormat="{}{0:HH:mm}"
+                            MajorStep="1"
+                            MajorStepUnit="Hour" />
+                    </tc:RadCartesianChart.HorizontalAxis>
+
+                    <tc:LineSeries ItemsSource="{x:Bind Path=ViewModel.ChartData}" Stroke="Aqua">
+                        <tc:LineSeries.VerticalAxis>
+                            <tc:LinearAxis
+                                Title="Flame On/Off"
+                                Foreground="Aqua"
+                                MajorStep="1" />
+                        </tc:LineSeries.VerticalAxis>
+                        <tc:LineSeries.CategoryBinding>
+                            <tc:PropertyNameDataPointBinding PropertyName="ReadingDateTime" />
+                        </tc:LineSeries.CategoryBinding>
+                        <tc:LineSeries.ValueBinding>
+                            <tc:PropertyNameDataPointBinding PropertyName="FlameOn" />
+                        </tc:LineSeries.ValueBinding>
+                    </tc:LineSeries>
+
+                    <tc:LineSeries ItemsSource="{x:Bind Path=ViewModel.ChartData}" Stroke="Red">
+                        <tc:LineSeries.VerticalAxis>
+                            <tc:LinearAxis
+                                Title="{} Flame Inverted (volts)"
+                                Foreground="Red"
+                                HorizontalLocation="Right"
+                                MajorStep="0.25" />
+                        </tc:LineSeries.VerticalAxis>
+                        <tc:LineSeries.CategoryBinding>
+                            <tc:PropertyNameDataPointBinding PropertyName="ReadingDateTime" />
+                        </tc:LineSeries.CategoryBinding>
+                        <tc:LineSeries.ValueBinding>
+                            <tc:PropertyNameDataPointBinding PropertyName="FlameLevel" />
+                        </tc:LineSeries.ValueBinding>
+                    </tc:LineSeries>
+
+                </tc:RadCartesianChart>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>
