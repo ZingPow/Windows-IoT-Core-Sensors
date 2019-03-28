@@ -1,0 +1,502 @@
+﻿<Page
+    x:Class="PMSx003_ParticleSensor.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:tc="using:Telerik.UI.Xaml.Controls.Chart"
+    Style="{StaticResource PageStyle}"
+    mc:Ignorable="d">
+    <Grid x:Name="ContentArea" Margin="{StaticResource MediumLeftRightMargin}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            x:Uid="Main_Title"
+            Grid.Row="0"
+            Style="{StaticResource PageTitleStyle}" />
+        <Grid Grid.Row="1" Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+            <!--
+                The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content.
+                Place your content here.
+            -->
+            <Grid Margin="8" HorizontalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <TextBlock
+                    Grid.Row="0"
+                    HorizontalAlignment="Center"
+                    Text="PMS7003 Test" />
+                <StackPanel
+                    Grid.Row="1"
+                    HorizontalAlignment="Center"
+                    Orientation="Vertical">
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                        <Button
+                            Margin="8"
+                            Command="{x:Bind ViewModel.SetActiveMode}"
+                            Content="Set Active Mode" />
+                        <Button
+                            Margin="8"
+                            Command="{x:Bind ViewModel.SetPassiveMode}"
+                            Content="Set Passive Mode" />
+                        <Button
+                            Margin="8"
+                            Command="{x:Bind ViewModel.GetReading}"
+                            Content="Passive Read" />
+                        <Button
+                            Margin="8"
+                            Command="{x:Bind ViewModel.SetSleepMode}"
+                            Content="Sleep Mode" />
+                        <Button
+                            Margin="8"
+                            Command="{x:Bind ViewModel.SetWakeMode}"
+                            Content="Wake Mode" />
+
+                        <Button
+                            Margin="8"
+                            Command="{x:Bind ViewModel.HardSleepMode}"
+                            Content="Hardware Sleep" />
+                        <Button
+                            Margin="8"
+                            Command="{x:Bind ViewModel.HardWakeMode}"
+                            Content="Hardware Wake" />
+                        <Button
+                            Margin="8"
+                            Command="{x:Bind ViewModel.HardReset}"
+                            Content="Hardware Reset" />
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                        <Button
+                            Margin="8"
+                            Command="{x:Bind ViewModel.HardSleepMode}"
+                            Content="Disconnect Sensor from UART" />
+                        <Button
+                            Margin="8"
+                            Command="{x:Bind ViewModel.HardWakeMode}"
+                            Content="Connect Sensor to UART" />
+
+                        <TextBlock
+                            Margin="8,0,8,0"
+                            VerticalAlignment="Center"
+                            Text="Active Mode Interval" />
+                        <TextBox
+                            VerticalAlignment="Center"
+                            InputScope="Number"
+                            Text="{x:Bind ViewModel.ReadingInterval, Mode=TwoWay}" />
+                    </StackPanel>
+                </StackPanel>
+
+                <Grid
+                    Grid.Row="2"
+                    Margin="8"
+                    HorizontalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Margin="8,0,0,0"
+                        HorizontalAlignment="Right"
+                        Text="1.0 microns" />
+                    <TextBlock
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Margin="8,0,0,0"
+                        HorizontalAlignment="Right"
+                        Text="2.5 microns" />
+                    <TextBlock
+                        Grid.Row="0"
+                        Grid.Column="3"
+                        Margin="8,0,0,0"
+                        HorizontalAlignment="Right"
+                        Text="10.0 microns" />
+
+                    <TextBlock
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="8,0,8,0"
+                        HorizontalAlignment="Right"
+                        Text="CF Concentration  μ g / m3" />
+                    <TextBlock
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        HorizontalAlignment="Right"
+                        Text="{x:Bind Mode=OneWay, Path=ViewModel.PM1_0Concentration_CF1}" />
+                    <TextBlock
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        HorizontalAlignment="Right"
+                        Text="{x:Bind Mode=OneWay, Path=ViewModel.PM2_5Concentration_CF1}" />
+                    <TextBlock
+                        Grid.Row="1"
+                        Grid.Column="3"
+                        HorizontalAlignment="Right"
+                        Text="{x:Bind Mode=OneWay, Path=ViewModel.PM10_0Concentration_CF1}" />
+
+                    <TextBlock
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Margin="8,0,8,0"
+                        HorizontalAlignment="Right"
+                        Text="Atmospheric Environment Concentration  μ g / m3" />
+                    <TextBlock
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        HorizontalAlignment="Right"
+                        Text="{x:Bind Mode=OneWay, Path=ViewModel.PM1_0Concentration_amb}" />
+                    <TextBlock
+                        Grid.Row="2"
+                        Grid.Column="2"
+                        HorizontalAlignment="Right"
+                        Text="{x:Bind Mode=OneWay, Path=ViewModel.PM2_5Concentration_amb}" />
+                    <TextBlock
+                        Grid.Row="2"
+                        Grid.Column="3"
+                        HorizontalAlignment="Right"
+                        Text="{x:Bind Mode=OneWay, Path=ViewModel.PM10_0Concentration_amb}" />
+
+                    <TextBlock
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        HorizontalAlignment="Right"
+                        Text="Product Vesion" />
+                    <TextBlock
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        HorizontalAlignment="Right"
+                        Text="{x:Bind Mode=OneWay, Path=ViewModel.ProductVersion}" />
+
+                    <TextBlock
+                        Grid.Row="4"
+                        Grid.Column="0"
+                        HorizontalAlignment="Right"
+                        Text="Status Code" />
+                    <TextBlock
+                        Grid.Row="4"
+                        Grid.Column="1"
+                        HorizontalAlignment="Right"
+                        Text="{x:Bind Mode=OneWay, Path=ViewModel.ErrorCodes}" />
+
+                    <TextBlock
+                        Grid.Row="4"
+                        Grid.Column="2"
+                        Grid.ColumnSpan="2"
+                        HorizontalAlignment="Center"
+                        Text="{x:Bind Mode=OneWay, Path=ViewModel.ReadingDateTime}" />
+                </Grid>
+
+                <tc:RadCartesianChart
+                    x:Name="radChartHour"
+                    Grid.Row="3"
+                    Margin="0,4,0,2"
+                    FontFamily="Segoe UI"
+                    PaletteName="DefaultDarkSelected">
+                    <tc:RadCartesianChart.Grid>
+                        <tc:CartesianChartGrid MajorLinesVisibility="XY">
+                            <tc:CartesianChartGrid.MajorXLineStyle>
+                                <Style TargetType="Line">
+                                    <Setter Property="StrokeDashArray" Value="10, 2" />
+                                </Style>
+                            </tc:CartesianChartGrid.MajorXLineStyle>
+                        </tc:CartesianChartGrid>
+                    </tc:RadCartesianChart.Grid>
+                    <tc:RadCartesianChart.HorizontalAxis>
+                        <tc:DateTimeContinuousAxis
+                            Title="Time"
+                            LabelFitMode="MultiLine"
+                            LabelFormat="{}{0:HH:mm}"
+                            MajorStep="1"
+                            MajorStepUnit="Minute" />
+                    </tc:RadCartesianChart.HorizontalAxis>
+                    <tc:RadCartesianChart.VerticalAxis>
+                        <tc:LinearAxis
+                            Title="Concentration μ g / m3"
+                            LabelFitMode="MultiLine"
+                            MajorStep="10" />
+                    </tc:RadCartesianChart.VerticalAxis>
+
+                    <tc:LineSeries ItemsSource="{x:Bind Path=ViewModel.Readings}" Stroke="Aqua">
+                        <tc:LineSeries.CategoryBinding>
+                            <tc:PropertyNameDataPointBinding PropertyName="ReadingDateTime" />
+                        </tc:LineSeries.CategoryBinding>
+                        <tc:LineSeries.ValueBinding>
+                            <tc:PropertyNameDataPointBinding PropertyName="PM1_0Concentration" />
+                        </tc:LineSeries.ValueBinding>
+                    </tc:LineSeries>
+
+                    <tc:LineSeries ItemsSource="{x:Bind Path=ViewModel.Readings}" Stroke="Red">
+                        <!--<tc:LineSeries.VerticalAxis>
+                            <tc:LinearAxis
+                                    Title="2.5 Micron"
+                                    Foreground="Red"
+                                    HorizontalLocation="Right"
+                                    MajorStep="10">
+                                <tc:LinearAxis.TitleTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Foreground="Red" Text="2.5 Micron" />
+                                    </DataTemplate>
+                                </tc:LinearAxis.TitleTemplate>
+                            </tc:LinearAxis>
+                        </tc:LineSeries.VerticalAxis>-->
+                        <tc:LineSeries.CategoryBinding>
+                            <tc:PropertyNameDataPointBinding PropertyName="ReadingDateTime" />
+                        </tc:LineSeries.CategoryBinding>
+                        <tc:LineSeries.ValueBinding>
+                            <tc:PropertyNameDataPointBinding PropertyName="PM2_5Concentration" />
+                        </tc:LineSeries.ValueBinding>
+                    </tc:LineSeries>
+
+                    <tc:LineSeries ItemsSource="{x:Bind Path=ViewModel.Readings}" Stroke="Yellow">
+                        <tc:LineSeries.CategoryBinding>
+                            <tc:PropertyNameDataPointBinding PropertyName="ReadingDateTime" />
+                        </tc:LineSeries.CategoryBinding>
+                        <tc:LineSeries.ValueBinding>
+                            <tc:PropertyNameDataPointBinding PropertyName="PM10_0Concentration" />
+                        </tc:LineSeries.ValueBinding>
+                    </tc:LineSeries>
+                </tc:RadCartesianChart>
+
+                <TextBlock
+                    Grid.Row="4"
+                    Margin="0,8,0,0"
+                    HorizontalAlignment="Center"
+                    FontSize="24"
+                    Text="Particle Counts" />
+
+                <Grid
+                    Grid.Row="5"
+                    Margin="8"
+                    HorizontalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Margin="8,0,0,0"
+                        HorizontalAlignment="Right"
+                        Text="0.3 Micron" />
+                    <TextBlock
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Margin="8,0,0,0"
+                        HorizontalAlignment="Right"
+                        Text="0.5 Micron" />
+                    <TextBlock
+                        Grid.Row="0"
+                        Grid.Column="3"
+                        Margin="8,0,0,0"
+                        HorizontalAlignment="Right"
+                        Text="1.0 Micron" />
+                    <TextBlock
+                        Grid.Row="0"
+                        Grid.Column="4"
+                        Margin="8,0,0,0"
+                        HorizontalAlignment="Right"
+                        Text="2.5 Micron" />
+                    <TextBlock
+                        Grid.Row="0"
+                        Grid.Column="5"
+                        Margin="8,0,0,0"
+                        HorizontalAlignment="Right"
+                        Text="5.0 Micron" />
+                    <TextBlock
+                        Grid.Row="0"
+                        Grid.Column="6"
+                        Margin="8,0,0,0"
+                        HorizontalAlignment="Right"
+                        Text="10.0 Micron" />
+
+                    <TextBlock
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="8,0,8,0"
+                        Text="Counts per 0.1 liter" />
+                    <TextBlock
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        HorizontalAlignment="Right"
+                        Text="{x:Bind Mode=OneWay, Path=ViewModel.PM0_3Count}" />
+                    <TextBlock
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        HorizontalAlignment="Right"
+                        Text="{x:Bind Mode=OneWay, Path=ViewModel.PM0_5Count}" />
+                    <TextBlock
+                        Grid.Row="1"
+                        Grid.Column="3"
+                        HorizontalAlignment="Right"
+                        Text="{x:Bind Mode=OneWay, Path=ViewModel.PM1_0Count}" />
+                    <TextBlock
+                        Grid.Row="1"
+                        Grid.Column="4"
+                        HorizontalAlignment="Right"
+                        Text="{x:Bind Mode=OneWay, Path=ViewModel.PM2_5Count}" />
+                    <TextBlock
+                        Grid.Row="1"
+                        Grid.Column="5"
+                        HorizontalAlignment="Right"
+                        Text="{x:Bind Mode=OneWay, Path=ViewModel.PM5_0Count}" />
+                    <TextBlock
+                        Grid.Row="1"
+                        Grid.Column="6"
+                        HorizontalAlignment="Right"
+                        Text="{x:Bind Mode=OneWay, Path=ViewModel.PM10_0Count}" />
+                </Grid>
+
+                <tc:RadCartesianChart
+                    x:Name="radChartHour2"
+                    Grid.Row="6"
+                    Margin="0,4,0,2"
+                    FontFamily="Segoe UI"
+                    PaletteName="DefaultDarkSelected">
+                    <tc:RadCartesianChart.Grid>
+                        <tc:CartesianChartGrid MajorLinesVisibility="XY">
+                            <tc:CartesianChartGrid.MajorXLineStyle>
+                                <Style TargetType="Line">
+                                    <Setter Property="StrokeDashArray" Value="10, 2" />
+                                </Style>
+                            </tc:CartesianChartGrid.MajorXLineStyle>
+                        </tc:CartesianChartGrid>
+                    </tc:RadCartesianChart.Grid>
+                    <tc:RadCartesianChart.HorizontalAxis>
+                        <tc:DateTimeContinuousAxis
+                            Title="Time"
+                            LabelFitMode="MultiLine"
+                            LabelFormat="{}{0:HH:mm}"
+                            MajorStep="1"
+                            MajorStepUnit="Minute" />
+                    </tc:RadCartesianChart.HorizontalAxis>
+                    <tc:RadCartesianChart.VerticalAxis>
+                        <tc:LinearAxis
+                            Title="Particle Count /  0.1 L"
+                            LabelFitMode="MultiLine"
+                            MajorStep="1000" />
+                    </tc:RadCartesianChart.VerticalAxis>
+
+                    <tc:LineSeries ItemsSource="{x:Bind Path=ViewModel.CountsHigh}" Stroke="Aqua">
+                        <tc:LineSeries.CategoryBinding>
+                            <tc:PropertyNameDataPointBinding PropertyName="ReadingDateTime" />
+                        </tc:LineSeries.CategoryBinding>
+                        <tc:LineSeries.ValueBinding>
+                            <tc:PropertyNameDataPointBinding PropertyName="PM1_0Count" />
+                        </tc:LineSeries.ValueBinding>
+                    </tc:LineSeries>
+
+                    <tc:LineSeries ItemsSource="{x:Bind Path=ViewModel.CountsHigh}" Stroke="Orange">
+                        <tc:LineSeries.CategoryBinding>
+                            <tc:PropertyNameDataPointBinding PropertyName="ReadingDateTime" />
+                        </tc:LineSeries.CategoryBinding>
+                        <tc:LineSeries.ValueBinding>
+                            <tc:PropertyNameDataPointBinding PropertyName="PM0_3Count" />
+                        </tc:LineSeries.ValueBinding>
+                    </tc:LineSeries>
+
+                    <tc:LineSeries ItemsSource="{x:Bind Path=ViewModel.CountsHigh}" Stroke="Pink">
+                        <tc:LineSeries.CategoryBinding>
+                            <tc:PropertyNameDataPointBinding PropertyName="ReadingDateTime" />
+                        </tc:LineSeries.CategoryBinding>
+                        <tc:LineSeries.ValueBinding>
+                            <tc:PropertyNameDataPointBinding PropertyName="PM0_5Count" />
+                        </tc:LineSeries.ValueBinding>
+                    </tc:LineSeries>
+                </tc:RadCartesianChart>
+
+                <tc:RadCartesianChart
+                    x:Name="radChartHour3"
+                    Grid.Row="7"
+                    Margin="0,4,0,2"
+                    FontFamily="Segoe UI"
+                    PaletteName="DefaultDarkSelected">
+                    <tc:RadCartesianChart.Grid>
+                        <tc:CartesianChartGrid MajorLinesVisibility="XY">
+                            <tc:CartesianChartGrid.MajorXLineStyle>
+                                <Style TargetType="Line">
+                                    <Setter Property="StrokeDashArray" Value="10, 2" />
+                                </Style>
+                            </tc:CartesianChartGrid.MajorXLineStyle>
+                        </tc:CartesianChartGrid>
+                    </tc:RadCartesianChart.Grid>
+                    <tc:RadCartesianChart.HorizontalAxis>
+                        <tc:DateTimeContinuousAxis
+                            Title="Time"
+                            LabelFitMode="MultiLine"
+                            LabelFormat="{}{0:HH:mm}"
+                            MajorStep="1"
+                            MajorStepUnit="Minute" />
+                    </tc:RadCartesianChart.HorizontalAxis>
+                    <tc:RadCartesianChart.VerticalAxis>
+                        <tc:LinearAxis
+                            Title="Particle Count /  0.1 L"
+                            LabelFitMode="MultiLine"
+                            MajorStep="10" />
+                    </tc:RadCartesianChart.VerticalAxis>
+
+                    <tc:LineSeries ItemsSource="{x:Bind Path=ViewModel.CountsLow}" Stroke="Red">
+                        <tc:LineSeries.CategoryBinding>
+                            <tc:PropertyNameDataPointBinding PropertyName="ReadingDateTime" />
+                        </tc:LineSeries.CategoryBinding>
+                        <tc:LineSeries.ValueBinding>
+                            <tc:PropertyNameDataPointBinding PropertyName="PM2_5Count" />
+                        </tc:LineSeries.ValueBinding>
+                    </tc:LineSeries>
+
+                    <tc:LineSeries ItemsSource="{x:Bind Path=ViewModel.CountsLow}" Stroke="Yellow">
+                        <tc:LineSeries.CategoryBinding>
+                            <tc:PropertyNameDataPointBinding PropertyName="ReadingDateTime" />
+                        </tc:LineSeries.CategoryBinding>
+                        <tc:LineSeries.ValueBinding>
+                            <tc:PropertyNameDataPointBinding PropertyName="PM10_0Count" />
+                        </tc:LineSeries.ValueBinding>
+                    </tc:LineSeries>
+
+                    <tc:LineSeries ItemsSource="{x:Bind Path=ViewModel.CountsLow}" Stroke="Purple">
+                        <tc:LineSeries.CategoryBinding>
+                            <tc:PropertyNameDataPointBinding PropertyName="ReadingDateTime" />
+                        </tc:LineSeries.CategoryBinding>
+                        <tc:LineSeries.ValueBinding>
+                            <tc:PropertyNameDataPointBinding PropertyName="PM5_0Count" />
+                        </tc:LineSeries.ValueBinding>
+                    </tc:LineSeries>
+                </tc:RadCartesianChart>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>
